@@ -44,3 +44,26 @@ but It works to use `npm install -g pm2`...
 * regist pm2 as start proram
     - pm2 startup
     - pm2 save
+
+* It doesn't work when I install `pm2` package on ubuntu 18.04 LTS through `yarn  global add pm2`...
+
+* When I tried to command `sudo apt install npm`, I got error message like `node-gyp(>=0.10.9)...`, but
+It works when first I hit this code `sudo apt-get install nodejs-dev node-gyp libssl1.0-dev` and 
+`sudo apt-get install npm`...
+
+* `df -h` on ubuntu shows that system status summary....
+        Filesystem      Size  Used Avail Use% Mounted on
+        udev            1.9G     0  1.9G   0% /dev
+        tmpfs           395M  2.8M  392M   1% /run
+        /dev/vda1        50G  4.4G   43G  10% /
+        tmpfs           2.0G     0  2.0G   0% /dev/shm
+        tmpfs           5.0M     0  5.0M   0% /run/lock
+        tmpfs           2.0G     0  2.0G   0% /sys/fs/cgroup
+        tmpfs           395M     0  395M   0% /run/user/1000
+
+
+
+* my ubnutu sever does not work for mongodb....error like  `Error: couldn't connect to server 127.0.0.1:27017, connection attempt failed: SocketException: Error connecting to 127.0.0.1:27017 :: caused by :: Connection refused :`
+
+* tomorrow I will try `sudo rm /var/lib/mongodb/mongod.lock` ....
+ - https://stackoverflow.com/questions/13312358/mongo-couldnt-connect-to-server-127-0-0-127017
