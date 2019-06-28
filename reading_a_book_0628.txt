@@ -1,0 +1,86 @@
+This is my dev dairy to know when I do development...
+
+- 190628...
+* What is middleware...
+
+* jsonwebtoken
+
+ -  var jwt = require('jsonwebtoken');
+    const key = "베리베리어려운키"
+    var token = jwt.sign({ id: 'jakin', email: 'jakin@xxx.com' }, key);
+    console.log(token)
+
+    var decoded = jwt.verify(token, key) //, (err, r) => {
+    //   if (err) return console.log(err)
+    // });
+    console.log(decoded)
+    console.log(new Date(decoded.iat * 10000))
+
+* Callback and Promise pattern...
+
+[Callback pattern]
+-   User.findOne({}, (err, r) => {
+    if (err) return console.error(err)
+    console.log(r)
+})
+
+[Callback pattern]
+-   User.findOne({ nameL 'aaa'}, (err, u) => {
+    if (err) return console.error(err.message)
+    if (!u) {
+        console.log(u) // null
+        User.create({ name: 'aaa', age: 10 }, (err, cu) => {
+            if (err) return console.error(err.message)
+            console.log(cu)
+            jwt.sign({ name: cu.name, age: cu.age}, key, (err, token) => {
+                if (err) return console.error(err.message)
+                console.log(token)
+                jwt.verify(token, key, (err, v) => {
+                    if (err) return console.error(err.message)
+                    console.log(v)
+                })
+            })
+        })
+    }
+    else {
+        console.log(u) 
+        const user = u
+        User.updateOne( {_id: u._id}, {$inc: {age: 1}}, (err, ur) => {
+            if (err) return console.error(err.message)
+            console.log(ur)
+            jwt.sign({ name: user.name, age: user.age + 1}, key, (err, token) => {
+                if (err) return console.error(err.message)
+                console.log(token, key, (err, v) => {
+                    if (err) return console.error(err.message)
+                    console.log(v)
+                })
+            })
+        })
+    } 
+})
+
+-   foo(1, (err, r) => {
+    if (err) return console.error(err.message)
+    console.log(r)
+})
+
+[Callback pattern]
+-   const foo = (v, cb) => {
+    if (v > 1) return cb(new Error('abcd'))
+    setTimeOut(() => {
+        cb(null, v+1)    
+    }, 3000)   
+}
+
+-   foo(1, (err, r) => {
+    if (err) return console.error(err.message)
+    console.log(r)
+})
+
+[Promise pattern]
+-   User.findOne({})
+    .then(r => console.log(r))
+    .catch(err => console.error(err))
+
+
+
